@@ -31,25 +31,32 @@ const Weather = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='flex flex-col gap-5'>
+      <form onSubmit={handleSubmit} className='flex flex-row gap-3'>
         <input
           type="text"
-          placeholder="Enter city name"
+          placeholder="Enter name of the area"
           value={city}
+          class="input input-bordered w-full max-w-xs"
           onChange={handleInputChange}
         />
-        <button type="submit">Get Weather</button>
+        <button type="submit" className='btn btn-success text-white'>Get Weather</button>
       </form>
-      {weatherData ? (
-        <>
-          <h2>{weatherData.name}</h2>
-          <p>Temperature: {weatherData.main.temp}°C</p>
-          <p>Description: {weatherData.weather[0].description}</p>
-        </>
-      ) : (
-        <p>Loading weather data...</p>
-      )}
+      <div>
+        {weatherData ? (
+          <>
+            <div class="card bg-primary text-white w-96 shadow-xl">
+              <div class="card-body">
+                <h2>{weatherData.name}</h2>
+                <p>Temperature: {weatherData.main.temp}°C</p>
+                <p>Description: {weatherData.weather[0].description}</p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <p>Loading weather data...</p>
+        )}
+      </div>
     </div>
   );
 };
